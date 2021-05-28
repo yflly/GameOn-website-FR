@@ -195,6 +195,19 @@ label {
   display: inline-block;
   margin-bottom: 11px;
 }
+/*ADD CODE*/
+.errorMessage {
+  font-family: var(--font-default);
+  font-size: 12px;
+  font-weight: normal;
+  display: inline-block;
+  margin-bottom: 11px;
+  margin-left: 12px;
+  color:red;
+}
+
+
+
 input {
   padding: 8px;
   border: 0.8px solid #ccc;
