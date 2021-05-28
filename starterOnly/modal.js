@@ -85,7 +85,7 @@ function validateInput(e){
    
     errors.push({
       id: "errorMessageEmail",
-      message: "Veuillez saisir une adresse électronique valide"
+      message: "Veuillez saisir une adresse électronique valide."
     });
 
     email.style.borderColor= "red";
@@ -116,7 +116,7 @@ function validateInput(e){
 
     errors.push({
       id: "errorMessageQuantity",
-      message: "Vous devez entrer un nombre entre 0 et 99"
+      message: "Vous devez entrer un nombre entre 0 et 99."
     });  
 
     quantity.style.borderColor= "red";

@@ -198,11 +198,10 @@ label {
 /*ADD CODE*/
 .errorMessage {
   font-family: var(--font-default);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: normal;
   display: inline-block;
   margin-bottom: 11px;
-  margin-left: 12px;
   color:red;
 }
 
