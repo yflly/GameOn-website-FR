@@ -56,12 +56,18 @@
         <div class="content">
           <span class="close"></span>
           <div class="modal-body">
+<!--Message de confirmation-->
+            <div class=confirmationMessage id=confirmationMessage>
+              <span>Merci ! Votre réservation a été reçue.</span>
+              <input id="btn-submit" class="btn-submit" type="button" value="Fermer" />
+            </div>
+<!--Fin Message de confirmation-->
             <form
               name="reserve"
               action="index.html"
               method="get"
-              onsubmit="return validate();"
               id="myForm"
+              novalidate
             >
 
 
@@ -228,6 +234,16 @@
           </div>
         </div>
       </div>
+      <!--Modal de confirmation-->
+      <div class="bgroundConfirm">
+        <div class="content contentConfirm ">
+          <span class="close closeConfirm"></span>
+          <div class="modal-body modalConfirm">
+            <p>Merci ! Votre réservation a été reçue.</p>
+          </div>
+        </div>
+      </div>
+      <!--Fin de modal de confirmation-->
     </main>
     <footer>
       <p class="copyrights">

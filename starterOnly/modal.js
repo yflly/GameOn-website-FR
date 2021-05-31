@@ -13,22 +13,25 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const modalBtnClose = document.querySelectorAll(".close");
 
+const modalbgConfirm = document.querySelector(".bgroundConfirm");
+const btnSubmit = document.querySelectorAll("#btn-submit");
 
 // launch modal event
-modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+modalBtn.forEach((btn) => btn.addEventListener("click", launchModal))
 
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
 }
 
-// (1)TODO : fermer la modale
 // close modal event
 modalBtnClose.forEach((btn) => btn.addEventListener("click", closeModal));
 
 // close modal form
 function closeModal() {
-  modalbg.style.display = "none";
+  modalbg.style.display = "none"; 
+  modalbgConfirm.style.display = "none";
+
 }
 
 // (2)Implémenter entrées du formulaire
@@ -154,7 +157,6 @@ function validateInput(e){
 
   }
   
-
   return errors //nous retournons les erreurs
 
 } //Fin de la fonction ValidateInput(e)
@@ -169,8 +171,22 @@ document.forms["reserve"].addEventListener("submit", function(e){ // handler
     e.preventDefault();
     console.log(errors);
     errors.forEach(({ id, message }) => errorMessage(id, message))
+  }else{
+    let validate =1
   }
+  
+  
 });
+
+if (validate=1) {
+  modalbgConfirm.style.display = "block";
+  validate=0
+}else{
+  modalbgConfirm.style.display = "none";
+
+}
+
+
 
 function errorMessage(id,message){
   document.getElementById(id).innerHTML = message;
