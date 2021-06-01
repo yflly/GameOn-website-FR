@@ -12,9 +12,10 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const modalBtnClose = document.querySelectorAll(".close");
-
 const modalbgConfirm = document.querySelector(".bgroundConfirm");
+modalbgConfirm.style.display="none";
 const btnSubmit = document.querySelectorAll("#btn-submit");
+const validate = 10;
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal))
@@ -22,6 +23,7 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal))
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
+  //modalbgConfirm.style.display = "block";
 }
 
 // close modal event
@@ -31,7 +33,6 @@ modalBtnClose.forEach((btn) => btn.addEventListener("click", closeModal));
 function closeModal() {
   modalbg.style.display = "none"; 
   modalbgConfirm.style.display = "none";
-
 }
 
 // (2)Implémenter entrées du formulaire
@@ -155,15 +156,14 @@ function validateInput(e){
       message: "Vous devez vérifier que vous acceptez les termes et conditions."
     });  
 
-  }
-  
-  return errors //nous retournons les erreurs
+  }  
+
+    return errors //nous retournons les erreurs
 
 } //Fin de la fonction ValidateInput(e)
 
 
 document.forms["reserve"].addEventListener("submit", function(e){ // handler
- 
   // reinitialiser les messages d'erreurs (tous)
   [ ...document.getElementsByClassName('errorMessage') ].forEach(el => errorMessage(el.id, ""))
   const errors = validateInput(e)
@@ -172,19 +172,22 @@ document.forms["reserve"].addEventListener("submit", function(e){ // handler
     console.log(errors);
     errors.forEach(({ id, message }) => errorMessage(id, message))
   }else{
-    let validate =1
-  }
-  
-  
+     validate = 1; // Formulaire qui ne comporte pas d'erreur input.
+  }  
+
 });
 
-if (validate=1) {
+//afficher le message de validation du formulaire
+if (validate == 1) {
   modalbgConfirm.style.display = "block";
-  validate=0
+  validate=""
 }else{
   modalbgConfirm.style.display = "none";
 
 }
+//if (errors.length == 0) {
+  //document.querySelector(".bgroundConfirm").style.display="block" ;
+//}
 
 
 
