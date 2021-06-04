@@ -141,7 +141,7 @@ main {
 
 /* Modal form */
 
-.button {
+.button, .button-close {
   background: #fe142f;
   margin-top: 0.5em;
   padding: 1em;
@@ -354,7 +354,8 @@ input[data-error]::after {
   transform: rotate(-45deg);
 }
 .btn-submit,
-.btn-signup {
+.btn-signup,
+.button-close {
   background: #fe142f;
   display: block;
   margin: 0 auto;
