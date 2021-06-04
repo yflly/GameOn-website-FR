@@ -366,6 +366,11 @@ input[data-error]::after {
   cursor: pointer;
   border: 0;
 }
+
+.button-close {
+  margin-bottom: 25px;
+
+}
 /* custom select styles */
 .custom-select {
   position: relative;
