@@ -1,12 +1,3 @@
-function editNav() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
-
 // DOM Elements
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
@@ -16,6 +7,28 @@ const modalBtnCloseConfirm = document.querySelectorAll(".bgroundConfirm .close")
 const modalbgConfirm = document.querySelector(".bgroundConfirm");
 const btnSubmit = document.querySelectorAll("#btn-submit");
 
+//Form elements
+const firstName =document.getElementById("first");
+const lastName =document.getElementById("last");
+const email =document.getElementById("email");
+const birthDate =document.getElementById("birthdate");
+const quantity =document.getElementById("quantity");
+let city =document.getElementsByName("location");
+const conditionAcceptation =document.getElementById("checkbox1");
+const formulaire = document.getElementById("myForm"); 
+
+const regex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+const dateFormat = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
+
+//FUNCTIONS
+function editNav() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
 
 
 // launch modal event
@@ -37,27 +50,26 @@ function closeModal() {
   modalbgConfirm.style.display = "none";
 }
 
+//On ajoute le message d'erreur dans le html
+function errorMessage(id,message){
+  document.getElementById(id).innerHTML = message;
+  return false
+};
+
+ //Close modal de confirmation
+ function closeConfirmation() {
+  closeModal();
+ //document.getElementById("myForm").submit();
+ document.getElementById("myForm").reset();
+}
+
+// Valider le formulaire par submit
+function valideForm() {
+  document.getElementById("myForm").submit();
+ }
 
 
-
-
-
-//Form elements
-
-const firstName =document.getElementById("first");
-const lastName =document.getElementById("last");
-const email =document.getElementById("email");
-const birthDate =document.getElementById("birthdate");
-const quantity =document.getElementById("quantity");
-let city =document.getElementsByName("location");
-const conditionAcceptation =document.getElementById("checkbox1");
-const formulaire = document.getElementById("myForm"); 
-
-const regex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
-const dateFormat = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
-
-
-
+//Contrôle des champs de saisies
 function validateInput(e){
   const errors = [];
 
@@ -169,6 +181,7 @@ function validateInput(e){
 } //Fin de la fonction ValidateInput(e)
 
 
+//Si un champs est erroné on affiche le message d'erreur sinon message de confirmation 
 document.forms["reserve"].addEventListener("submit", function(e){ // handler
   // reinitialiser les messages d'erreurs (tous)
   [ ...document.getElementsByClassName('errorMessage') ].forEach(el => errorMessage(el.id, ""))
@@ -179,36 +192,19 @@ document.forms["reserve"].addEventListener("submit", function(e){ // handler
     errors.forEach(({ id, message }) => errorMessage(id, message))
   }else{ 
     modalbgConfirm.style.display="block";
+
     /* fetch('/api/myForm', {
       method: "POST",
       body: document.forms["reserve"].formData
     }).then(() => {
       modalbgConfirm.style.display="block";
-    }).catch((err) => console.error(err)) */
-  
-          
+    }).catch((err) => console.error(err)) */       
 
   }  
  
 });
 
-
-function errorMessage(id,message){
-  document.getElementById(id).innerHTML = message;
-  return false
-};
-
- function valideForm() {
-  document.getElementById("myForm").submit();
- }
-
- function closeConfirmation() {
-
-  closeModal();
- // document.getElementById("myForm").submit();
- document.getElementById("myForm").reset();
-}
-
+// A la validation de la modal de confirmation, on lance la function closeConfirmation
  let btnsubmit = document.getElementsByClassName("button-close").item(0)
  btnsubmit.addEventListener("click", closeConfirmation);
 
