@@ -11,23 +11,25 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-const modalBtnClose = document.querySelectorAll(".close");
+const modalBtnClose = document.querySelectorAll(".bground .close")[0];
+const modalBtnCloseConfirm = document.querySelectorAll(".bgroundConfirm .close")[0];
 const modalbgConfirm = document.querySelector(".bgroundConfirm");
-modalbgConfirm.style.display="none";
 const btnSubmit = document.querySelectorAll("#btn-submit");
-const validate = 10;
+
+
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal))
 
+
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
-  //modalbgConfirm.style.display = "block";
 }
 
 // close modal event
-modalBtnClose.forEach((btn) => btn.addEventListener("click", closeModal));
+  modalBtnClose.addEventListener("click", closeModal);
+  modalbgConfirm.addEventListener("click", closeConfirmation)
 
 // close modal form
 function closeModal() {
@@ -35,7 +37,11 @@ function closeModal() {
   modalbgConfirm.style.display = "none";
 }
 
-// (2)Implémenter entrées du formulaire
+
+
+
+
+
 //Form elements
 
 const firstName =document.getElementById("first");
@@ -45,6 +51,7 @@ const birthDate =document.getElementById("birthdate");
 const quantity =document.getElementById("quantity");
 let city =document.getElementsByName("location");
 const conditionAcceptation =document.getElementById("checkbox1");
+const formulaire = document.getElementById("myForm"); 
 
 const regex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
 const dateFormat = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
@@ -157,7 +164,6 @@ function validateInput(e){
     });  
 
   }  
-
     return errors //nous retournons les erreurs
 
 } //Fin de la fonction ValidateInput(e)
@@ -167,34 +173,49 @@ document.forms["reserve"].addEventListener("submit", function(e){ // handler
   // reinitialiser les messages d'erreurs (tous)
   [ ...document.getElementsByClassName('errorMessage') ].forEach(el => errorMessage(el.id, ""))
   const errors = validateInput(e)
+  e.preventDefault();
   if (errors.length > 0) {
-    e.preventDefault();
     console.log(errors);
     errors.forEach(({ id, message }) => errorMessage(id, message))
-  }else{
-     validate = 1; // Formulaire qui ne comporte pas d'erreur input.
+  }else{ 
+    modalbgConfirm.style.display="block";
+    /* fetch('/api/myForm', {
+      method: "POST",
+      body: document.forms["reserve"].formData
+    }).then(() => {
+      modalbgConfirm.style.display="block";
+    }).catch((err) => console.error(err)) */
+  
+          
+
   }  
-
+ 
 });
-
-//afficher le message de validation du formulaire
-if (validate == 1) {
-  modalbgConfirm.style.display = "block";
-  validate=""
-}else{
-  modalbgConfirm.style.display = "none";
-
-}
-//if (errors.length == 0) {
-  //document.querySelector(".bgroundConfirm").style.display="block" ;
-//}
-
 
 
 function errorMessage(id,message){
   document.getElementById(id).innerHTML = message;
   return false
 };
+
+ function valideForm() {
+  document.getElementById("myForm").submit();
+ }
+
+ function closeConfirmation() {
+
+  closeModal();
+ // document.getElementById("myForm").submit();
+ document.getElementById("myForm").reset();
+}
+
+ let btnsubmit = document.getElementsByClassName("button-close").item(0)
+ btnsubmit.addEventListener("click", closeConfirmation);
+
+ 
+
+ 
+
 
 
 
