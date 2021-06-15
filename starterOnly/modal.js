@@ -182,13 +182,15 @@ function validateInput(e){
 
 
 //Si un champs est erroné on affiche le message d'erreur sinon message de confirmation 
-document.forms["reserve"].addEventListener("submit", function(e){ // handler
+document.forms["reserve"].addEventListener("submit", handleFormSubmit);
+
+function handleFormSubmit(ev){ // handler
   // reinitialiser les messages d'erreurs (tous)
-  [ ...document.getElementsByClassName('errorMessage') ].forEach(el => errorMessage(el.id, ""))
-  const errors = validateInput(e)
-  e.preventDefault();
+  [ ...document.getElementsByClassName('errorMessage') ].forEach(function(el) { errorMessage(el.id, "") })
+  const errors = validateInput(ev)
+  ev.preventDefault();
   if (errors.length > 0) {
-    console.log(errors);
+    //console.log(errors);
     errors.forEach(({ id, message }) => errorMessage(id, message))
   }else{ 
     modalbgConfirm.style.display="block";
@@ -202,7 +204,7 @@ document.forms["reserve"].addEventListener("submit", function(e){ // handler
 
   }  
  
-});
+}
 
 // A la validation de la modal de confirmation, on lance la function closeConfirmation
  let btnsubmit = document.getElementsByClassName("button-close").item(0)
