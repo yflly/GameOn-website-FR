@@ -19,6 +19,23 @@ const formulaire = document.getElementById("myForm");
 
 const regex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
 const dateFormat = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
+const letters= /^([a-zA-Z\-\s]*)$/;
+
+//récupérer la date du jour et l'implémenter dans la date Max
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+ if(dd<10){
+        dd='0'+dd
+    } 
+    if(mm<10){
+        mm='0'+mm
+    } 
+
+today = yyyy+'-'+mm+'-'+dd;
+document.getElementById("birthdate").setAttribute("max", today);
+
 
 //FUNCTIONS
 function editNav() {
@@ -74,17 +91,23 @@ function validateInput(e){
   const errors = [];
 
   //Validation Firstname
-  if (firstName.value.trim().length < 2 ){
-   
+  if (firstName.value.trim().length < 2 ) {
+
    errors.push({
      id: "errorMessageFirst",
       message: "Veuillez entrer 2 caractères ou plus pour le champ du prénom."
     });
 
     firstName.style.borderColor= "red";
-  }else{
-    firstName.style.borderColor= "transparent";
+  } else if (!firstName.value.match(letters)){ 
+    
+   errors.push({
+    id: "errorMessageFirst",
+     message: "Veuillez entrer uniquement des lettres."
+   });
 
+  } else{
+    firstName.style.borderColor= "transparent";
   }
 
   
@@ -97,6 +120,13 @@ function validateInput(e){
     });
 
     lastName.style.borderColor= "red";
+  } else if (!lastName.value.match(letters)){ 
+    
+    errors.push({
+     id: "errorMessageLast",
+      message: "Veuillez entrer uniquement des lettres."
+    });
+
   }else{
     lastName.style.borderColor= "transparent";
 
@@ -193,7 +223,11 @@ function handleFormSubmit(ev){ // handler
     //console.log(errors);
     errors.forEach(({ id, message }) => errorMessage(id, message))
   }else{ 
+    modalbg.style.display="none";
     modalbgConfirm.style.display="block";
+    
+    
+
 
     /* fetch('/api/myForm', {
       method: "POST",
