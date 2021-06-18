@@ -33,6 +33,7 @@ img {
 .topnav {
   overflow: hidden;
   margin: 3.5%;
+  
 }
 .header-logo {
   float: left;
@@ -152,6 +153,7 @@ main {
   font-size: 16px;
 }
 
+
 .button:hover {
   background: #3876ac;
 }
@@ -173,10 +175,14 @@ main {
   background-color: rgba(26, 39, 156, 0.4);
 }
 
+
+
 .content {
   margin: 5% auto;
   width: 100%;
   max-width: 500px;
+  /*height: 100%;
+  max-height: 1000px;*/
   animation-name: modalopen;
   animation-duration: var(--modal-duration);
   background: #232323;
@@ -213,7 +219,7 @@ main {
 
 label {
   font-family: var(--font-default);
-  font-size: 17px;
+  font-size: 15px;
   font-weight: normal;
   display: inline-block;
   margin-bottom: 11px;
@@ -224,7 +230,7 @@ label {
   font-size: 14px;
   font-weight: normal;
   display: inline-block;
-  margin-bottom: 11px;
+  margin-bottom: 0px;
   color: red;
 }
 
@@ -235,11 +241,11 @@ input {
 }
 .text-control {
   margin: 0;
-  padding: 8px;
+  padding: 10px;
   width: 100%;
   border-radius: 8px;
-  font-size: 20px;
-  height: 48px;
+  font-size: 15px;
+  height: 40px;
 }
 .formData[data-error]::after {
   content: attr(data-error);
@@ -377,9 +383,7 @@ input[data-error]::after {
   border: 0;
 }
 
-.button-close {
-  margin-bottom: 25px;
-}
+
 /* custom select styles */
 .custom-select {
   position: relative;
@@ -458,7 +462,7 @@ input[data-error]::after {
   grid-template-columns: repeat(12, 1fr);
   overflow: hidden;
   box-shadow: 0 2px 7px 2px rgba(0, 0, 0, 0.2);
-  margin-bottom: 10px;
+  margin-bottom: 0px;
 }
 .hero-content {
   padding: 51px 67px;
@@ -520,6 +524,19 @@ input[data-error]::after {
 .hero-section > .btn-signup {
   display: none;
 }
+
+.modalConfirm  {
+  margin-top: 400px;
+}
+
+.button-close {
+  margin-top: 300px;
+  margin-bottom: 20px;
+}
+
+
+
+
 footer {
   padding-left: 2vw;
   padding-right: 2vw;
@@ -527,13 +544,14 @@ footer {
 }
 @media screen and (max-width: 800px) {
   .hero-section {
+    min-height: 50vh;
     display: block;
     box-shadow: unset;
   }
   .hero-content {
     background: #fff;
     color: #000;
-    padding: 20px;
+    padding: 0;
     min-width: 200px;
   }
   .hero-content::after {
@@ -556,28 +574,93 @@ footer {
   }
   .hero-section > .btn-signup {
     display: block;
-    margin: 32px auto 10px;
+    margin: 20px auto 5px;
     padding: 12px 35px;
   }
   .copyrights {
-    margin-top: 50px;
+    margin-top: 0px;
+    margin-bottom: 0px;
     text-align: center;
   }
 }
+@media screen and (min-width: 375px) {
+.button-close {
+  margin-top: 260px;
+  margin-bottom: 25px;
+}
+
+.modalConfirm {
+  margin-top: 260px;
+}
+
+}
 
 @media screen and (max-width: 375px) {
+  .header-logo img{
+    width:50%;
+    height:50%;
+    padding-top: 18px;
+  }
+
+  .content {
+    margin-top: 0px;
+  }
+
+  .modal-body {
+    padding: 5px 5%;
+
+  }  
+  label {
+    margin-bottom: 0;
+    font-size: 11px;
+  }
+
+  p.text-label {
+    font-size: 11px;
+  }
+
+  .checkbox-label, .checkbox2-label {
+    font-size: 9px;
+  }
+
+  .text-control {
+    height: 26px;
+    padding: 0;
+  }
+
+  .errorMessage {
+    margin-bottom: 0;
+    font-size: 10px;
+  }
+
   .hero-headline {
     font-size: 2rem;
   }
 
   .hero-text {
-    margin-top: 15px;
+    margin-top: 10px;
+    font-size: 0.8rem;
   }
 
   .hero-img img {
     margin-top: 20px;
   }
 }
+
+.text-label {
+  padding:0;
+}
+
+
+
+.btn-submit{
+  padding: 10px, 82px;
+  margin-top: 10px;
+  font-size:12px;
+}
+
+
+
 
 @keyframes modalopen {
   from {
